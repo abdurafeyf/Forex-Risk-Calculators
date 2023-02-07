@@ -1,41 +1,41 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-    <title>Forex Risk Calculators</title>
-  </head>
-  <body>
-    <div id="calculator">
-        <header style="margin-bottom: 20px;">
-            <span style="font-weight:bold; text-align:center; font-size: 15px;">Forex Risk Calculators</span>
-            <!-- <a href="https://sarmaaya.pk/" target="_blank">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <title>Forex Risk Calculators</title>
+</head>
+
+<body>
+  <div id="calculator">
+    <header style="margin-bottom: 20px;">
+      <span style="font-weight:bold; text-align:center; font-size: 15px;">Forex Risk Calculators</span>
+      <!-- <a href="https://sarmaaya.pk/" target="_blank">
                 <img src="images/sarmaaya.png" alt="sarmaaya" style="width: 20px; height: 20px; position: absolute; right: 0;">
             </a> -->
-        </header>
-        <div id="header">
-          <a href="https://sarmaaya.pk/" target="_blank">
-            <img src="images/sarmaaya.png" alt="sarmaaya">
-          </a>
-        </div>
-        
-        <div class="form-group">
-            <form>
-                <div class="form-group">
-                <select id="dropdown">
-                  <option value="margin">Margin</option>
-                  <option value="profit">Profit</option>
-                  <option value="position_size" selected>Position Size</option>
-                  <option value="pip_value">Pip Value</option>
-                </select>
-                </div>
-                <input type="button" value="Submit" id="submit-button">
-            </form>
-        </div>
+    </header>
+    <div id="header">
+      <a href="https://sarmaaya.pk/" target="_blank">
+        <img src="images/sarmaaya.png" alt="sarmaaya">
+      </a>
     </div>
-    <script src="script.js"></script>
-  </body>
+
+    <div class="form-group">
+      <form>
+        <div class="form-group">
+          <button id="margin-button">Margin</button>
+          <button id="profit-button">Profit</button>
+          <button id="position-size-button">Position Size</button>
+          <button id="pip-value-button">Pip Value</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+
 </html>

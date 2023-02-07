@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="margin.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <title>Margin Calculator</title>
 </head>
+
 <body>
     <div id="calculator">
         <header style="margin-bottom: 20px;">
             <span style="font-weight:bold; text-align:center;">Margin calculator</span>
             <a href="https://sarmaaya.pk/" target="_blank">
-                <img src="../images/sarmaaya.png" alt="sarmaaya" style="width: 20px; height: 20px; position: absolute; right: 0;">
+                <img src="../images/sarmaaya.png" alt="sarmaaya"
+                    style="width: 20px; height: 20px; position: absolute; right: 0;">
             </a>
         </header>
         <form>
@@ -54,7 +57,7 @@
             <div class="form-group">
                 <label for="account-currency">Account Currency</label>
                 <select id="account-currency">
-                  <option value="USD">USD</option>
+                    <option value="USD">USD</option>
                 </select>
             </div>
             <div class="form-group">
@@ -82,12 +85,14 @@
             </div>
             <div class="form-group">
                 <label>Trade Size (Lots)</label>
-                <input class="form-ctrl" type="number" value="1" id="trade-size" placeholder="Enter trade size" required>
+                <input class="form-ctrl" type="number" value="1" id="trade-size" placeholder="Enter trade size"
+                    required>
             </div>
             <button id="calculate-button">Calculate</button>
-            <span id="result"></span>
+            <span id="result" style="display: inline-block; font-size: 16px; font-weight: bold;"></span>
         </form>
-    </div>      
+    </div>
 </body>
 <script src="margin.js"></script>
+
 </html>

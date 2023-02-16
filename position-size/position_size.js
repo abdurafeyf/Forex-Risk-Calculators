@@ -45,8 +45,14 @@ calculateButton.addEventListener("click", event => {
             }
             let standardLots = (accountSize * (riskPercentage / 100)) / (stopLoss * pip_value);
             result.style.display = "block";
-            result.innerText = `Amount at Risk: ${accountSize*(riskPercentage/100)} ${selectedAccountCurrency} 
-        Sizing: ${(standardLots/if_jpy).toFixed(4)} Lots`;
+            if (pip_value === Infinity) {
+                result.innerText = `Amount at Risk: ${accountSize * (riskPercentage / 100)} ${selectedAccountCurrency} 
+                Press the button again`;
+            }
+            else {
+                result.innerText = `Amount at Risk: ${accountSize * (riskPercentage / 100)} ${selectedAccountCurrency} 
+        Sizing: ${(standardLots / if_jpy).toFixed(4)} Lots`;
+            }
         })
         .catch((error) => {
             console.log(error);
@@ -85,7 +91,7 @@ var arr = [];
 for (var i = 0; i < options.length; i++) {
     arr.push(options[i]);
 }
-arr.sort(function(a, b) {
+arr.sort(function (a, b) {
     return a.text == b.text ? 0 : (a.text > b.text ? 1 : -1);
 });
 for (var i = 0; i < arr.length; i++) {

@@ -17,3 +17,8 @@ document.getElementById("pip-value-button").addEventListener("click", function (
   event.preventDefault();
   window.location.href = "pip-value/pip_value.html";
 });
+
+document.getElementById("position-size-price-button").addEventListener("click", function (event) {
+  event.preventDefault();
+  window.location.href = "position-size-price/position_size_price.html";
+});

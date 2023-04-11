@@ -1,24 +1,24 @@
-const accountSizeInput = document.getElementById("account-size");
-const riskPercentageInput = document.getElementById("risk-percentage");
-const stopLossInput = document.getElementById("stop-loss");
-const currencyPairSelect = document.getElementById("currency-pair");
-const accountCurrencySelect = document.getElementById("account-currency");
-const calculateButton = document.getElementById("calculate-button");
+const accountSizeInputPips = document.getElementById("account-sizePips");
+const riskPercentageInputPips = document.getElementById("risk-percentagePips");
+const stopLossInputPips = document.getElementById("stop-lossPips");
+const currencyPairSelectPips = document.getElementById("currency-pairPips");
+const accountCurrencySelectPips = document.getElementById("account-currencyPips");
+const calculateButtonPips = document.getElementById("calculate-buttonPips");
 // const tradeSizeInput = document.getElementById("trade-size");
-const result = document.getElementById("result");
+const resultPips = document.getElementById("resultPips");
 
 // on button click
-calculateButton.addEventListener("click", event => {
+calculateButtonPips.addEventListener("click", event => {
     // prevent the default from submission behaviour
     event.preventDefault();
     // getting value and parsing into float
-    const accountSize = parseFloat(accountSizeInput.value);
-    const riskPercentage = parseFloat(riskPercentageInput.value);
-    const stopLoss = parseFloat(stopLossInput.value);
+    const accountSize = parseFloat(accountSizeInputPips.value);
+    const riskPercentage = parseFloat(riskPercentageInputPips.value);
+    const stopLoss = parseFloat(stopLossInputPips.value);
     // const tradeSize = parseFloat(tradeSizeInput.value);
     const tradeSize = parseFloat(1);
-    const selectedCurrencyPair = currencyPairSelect.value;
-    const selectedAccountCurrency = accountCurrencySelect.value;
+    const selectedCurrencyPair = currencyPairSelectPips.value;
+    const selectedAccountCurrency = accountCurrencySelectPips.value;
     // initializing pip value
     var pip_value = 0;
     var baseCurrency = selectedCurrencyPair.slice(0, 3);
@@ -44,13 +44,13 @@ calculateButton.addEventListener("click", event => {
                 pip_value = 10 / random;
             }
             let standardLots = (accountSize * (riskPercentage / 100)) / (stopLoss * pip_value);
-            result.style.display = "block";
+            resultPips.style.display = "block";
             if (pip_value === Infinity) {
-                result.innerText = `Amount at Risk: ${accountSize * (riskPercentage / 100)} ${selectedAccountCurrency} 
+                resultPips.innerText = `Amount at Risk: ${accountSize * (riskPercentage / 100)} ${selectedAccountCurrency} 
                 Press the button again`;
             }
             else {
-                result.innerText = `Amount at Risk: ${accountSize * (riskPercentage / 100)} ${selectedAccountCurrency} 
+                resultPips.innerText = `Amount at Risk: ${accountSize * (riskPercentage / 100)} ${selectedAccountCurrency} 
         Sizing: ${(standardLots / if_jpy).toFixed(4)} Lots`;
             }
         })
@@ -85,15 +85,15 @@ function getRate(currencyFrom, currencyTo) {
     });
 }
 
-var select = document.getElementById("currency-pair");
-var options = select.options;
-var arr = [];
-for (var i = 0; i < options.length; i++) {
-    arr.push(options[i]);
+var selectPips = document.getElementById("currency-pairPips");
+var optionsPips = selectPips.options;
+var arrPips = [];
+for (var i = 0; i < optionsPips.length; i++) {
+    arrPips.push(optionsPips[i]);
 }
-arr.sort(function (a, b) {
+arrPips.sort(function (a, b) {
     return a.text == b.text ? 0 : (a.text > b.text ? 1 : -1);
 });
-for (var i = 0; i < arr.length; i++) {
-    select.appendChild(arr[i]);
+for (var i = 0; i < arrPips.length; i++) {
+    selectPips.appendChild(arrPips[i]);
 }

@@ -2,43 +2,405 @@
 <html>
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-  <title>Forex Risk Calculators</title>
+  <script src="js/jquery.min.js"></script>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <script src="js/bootstrap.min.js"></script>
+  <link href="css/styles.css" rel="stylesheet">
 </head>
 
 <body>
-  <div id="calculator">
-    <header style="margin-bottom: 20px;">
-      <div class="title">
-        <h2>Forex Risk Calculators</h2>
+  <div class="container card shadow" id="calculator">
+    <ul class="nav nav-pills mb-1 shadow-sm" id="pills-tab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="margin-tab" data-toggle="pill" href="#margin" role="tab" aria-controls="margin"
+          aria-selected="true">Margin Calc</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="profit-tab" data-toggle="pill" href="#profit" role="tab" aria-controls="profit"
+          aria-selected="false">Profit Calc</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="pips-position-tab" data-toggle="pill" href="#pips-position" role="tab"
+          aria-controls="pips-position" aria-selected="false">Position Size Pips</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="pip-value-tab" data-toggle="pill" href="#pip-value" role="tab" aria-controls="pip-value"
+          aria-selected="false">Pip Value</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="pips-price-tab" data-toggle="pill" href="#pips-price" role="tab"
+          aria-controls="pips-price" aria-selected="false">Position Size Price</a>
+      </li>
+    </ul>
+    <!-- content -->
+    <div class="tab-content" id="margin-tabContent p-3">
+      <!-- 1st card -->
+      <div class="tab-pane fade show active p-3" id="margin" role="tabpanel" aria-labelledby="margin-tab">
+        <h5 class="pb-4 text-center"><img src="images/S-logo-green.png" width="10%">Margin Calculator</h5>
+        <form>
+          <div class="form-group">
+            <label for="currency-pair">Currency Pair</label>
+            <select id="currency-pair" class="form-control">
+              <option value="EURUSD">EUR/USD</option>
+              <option value="GBPUSD">GBP/USD</option>
+              <option value="USDJPY">USD/JPY</option>
+              <option value="AUDUSD">AUD/USD</option>
+              <option value="USDCHF">USD/CHF</option>
+              <option value="USDCAD">USD/CAD</option>
+              <option value="NZDUSD">NZD/USD</option>
+              <option value="EURAUD">EUR/AUD</option>
+              <option value="EURJPY">EUR/JPY</option>
+              <option value="EURCAD">EUR/CAD</option>
+              <option value="EURCHF">EUR/CHF</option>
+              <option value="EURNZD">EUR/NZD</option>
+              <option value="CADJPY">CAD/JPY</option>
+              <option value="EURGBP">EUR/GBP</option>
+              <option value="GBPCHF">GBP/CHF</option>
+              <option value="CHFJPY">CHF/JPY</option>
+              <option value="GBPJPY">GBP/JPY</option>
+              <option value="AUDCAD">AUD/CAD</option>
+              <option value="NZDCAD">NZD/CAD</option>
+              <option value="USDNOK">USD/NOK</option>
+              <option value="GBPAUD">GBP/AUD</option>
+              <option value="GBPNZD">GBP/NZD</option>
+              <option value="CADCHF">CAD/CHF</option>
+              <option value="AUDNZD">AUD/NZD</option>
+              <option value="AUDJPY">AUD/JPY</option>
+              <option value="AUDCHF">AUD/CHF</option>
+              <option value="GBPCAD">GBP/CAD</option>
+              <option value="NZDCHF">NZD/CHF</option>
+              <option value="NZDJPY">NZD/JPY</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="account-currency">Account Currency</label>
+            <select id="account-currency" class="form-control">
+              <option value="USD">USD</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Margin Ratio</label>
+            <select id="margin-ratio" class="form-control">
+              <option value="5:1">5:1</option>
+              <option value="10:1">10:1</option>
+              <option value="20:1">20:1</option>
+              <option value="25:1">25:1</option>
+              <option value="30:1">30:1</option>
+              <option value="33:1">33:1</option>
+              <option value="40:1">40:1</option>
+              <option value="50:1">50:1</option>
+              <option value="66:1">66:1</option>
+              <option value="100:1" selected>100:1</option>
+              <option value="125:1">125:1</option>
+              <option value="150:1">150:1</option>
+              <option value="200:1">200:1</option>
+              <option value="300:1">300:1</option>
+              <option value="400:1">400:1</option>
+              <option value="500:1">500:1</option>
+              <option value="600:1">600:1</option>
+              <option value="1000:1">1000:1</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Trade Size (Lots)</label>
+            <input class="form-control" type="number" value="1" id="trade-size" placeholder="Enter trade size" required>
+          </div>
+          <button id="calculate-button-margin" class="btn btn-green btn-block mt-2">Calculate</button>
+          <div id="result" style="display: inline-block; font-size: 16px; font-weight: bold;"></div>
+        </form>
+        <p class="text-center footer-text">
+          <a href="https://sarmaaya.pk/" target="_blank" class="text-center">www.sarmaaya.pk</a>
+        </p>
       </div>
-      <!-- <a href="https://sarmaaya.pk/" target="_blank">
-                <img src="images/sarmaaya.png" alt="sarmaaya" style="width: 20px; height: 20px; position: absolute; right: 0;">
-            </a> -->
-    </header>
-    <div id="header">
-      <a href="https://sarmaaya.pk/" target="_blank">
-        <img src="images/sarmaaya.png" alt="sarmaaya">
-      </a>
-    </div>
+      <!-- 2nd card -->
+      <div class="tab-pane fade p-3" id="profit" role="tabpanel" aria-labelledby="profit-tab">
+        <h5 class="pb-3 text-center"><img src="images/S-logo-green.png" width="10%">Profit Calculator</h5>
+        <form>
+          <div class="form-group">
+            <label for="currency-pair">Currency Pair</label>
+            <select id="currency-pairProfit" class="form-control">
+              <option value="EURUSD">EUR/USD</option>
+              <option value="GBPUSD">GBP/USD</option>
+              <option value="USDJPY">USD/JPY</option>
+              <option value="AUDUSD">AUD/USD</option>
+              <option value="USDCHF">USD/CHF</option>
+              <option value="USDCAD">USD/CAD</option>
+              <option value="NZDUSD">NZD/USD</option>
+              <option value="EURAUD">EUR/AUD</option>
+              <option value="EURJPY">EUR/JPY</option>
+              <option value="EURCAD">EUR/CAD</option>
+              <option value="EURCHF">EUR/CHF</option>
+              <option value="EURNZD">EUR/NZD</option>
+              <option value="CADJPY">CAD/JPY</option>
+              <option value="EURGBP">EUR/GBP</option>
+              <option value="GBPCHF">GBP/CHF</option>
+              <option value="CHFJPY">CHF/JPY</option>
+              <option value="GBPJPY">GBP/JPY</option>
+              <option value="AUDCAD">AUD/CAD</option>
+              <option value="NZDCAD">NZD/CAD</option>
+              <option value="USDNOK">USD/NOK</option>
+              <option value="GBPAUD">GBP/AUD</option>
+              <option value="GBPNZD">GBP/NZD</option>
+              <option value="CADCHF">CAD/CHF</option>
+              <option value="AUDNZD">AUD/NZD</option>
+              <option value="AUDJPY">AUD/JPY</option>
+              <option value="AUDCHF">AUD/CHF</option>
+              <option value="GBPCAD">GBP/CAD</option>
+              <option value="NZDCHF">NZD/CHF</option>
+              <option value="NZDJPY">NZD/JPY</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="account-currency">Account Currency</label>
+            <select id="account-currencyProfit" class="form-control">
+              <option value="USD">USD</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Trade Size (Lots)</label>
+            <input class="form-ctrl form-control" type="number" value="1" id="trade-sizeProfit"
+              placeholder="Enter trade size" required>
+          </div>
+          <div class="form-group">
+            <label>Open Price</label>
+            <input class="form-ctrl form-control" type="number" value="1.08805" id="open-priceProfit"
+              placeholder="Enter Open Price" required>
+          </div>
+          <div class="form-group">
+            <label>Close Price</label>
+            <input class="form-control" type="number" value="1.08816" id="close-priceProfit"
+              placeholder="Enter Close Price" required>
+          </div>
+          <div class="form-group">
+            <label>Direction</label>
+            <select id="directionProfit" class="form-control">
+              <option value="buy">Buy/Long</option>
+              <option value="sell">Sell/Short</option>
+            </select>
+          </div>
+          <button id="calculate-buttonProfit" class="btn btn-green btn-block mt-2">Calculate</button>
+          <div id="resultProfit" style="display: inline-block; font-size: 16px; font-weight: bold;"></div>
+        </form>
+        <p class="text-center footer-text">
+          <a href="https://sarmaaya.pk/" target="_blank" class="text-center">www.sarmaaya.pk</a>
+        </p>
+      </div>
+      <!-- 3nd card -->
+      <div class="tab-pane fade p-3" id="pips-position" role="tabpanel" aria-labelledby="pips-position-tab">
+        <h5 class="pb-4 text-center"><img src="images/S-logo-green.png" width="10%"> Position Size Calculator</h5>
+        <form>
+          <div class="form-group">
+            <label for="currency-pair">Currency Pair</label>
+            <select id="currency-pairPips" class="form-control">
+              <option value="EURUSD">EUR/USD</option>
+              <option value="GBPUSD">GBP/USD</option>
+              <option value="USDJPY">USD/JPY</option>
+              <option value="AUDUSD">AUD/USD</option>
+              <option value="USDCHF">USD/CHF</option>
+              <option value="USDCAD">USD/CAD</option>
+              <option value="NZDUSD">NZD/USD</option>
+              <option value="EURAUD">EUR/AUD</option>
+              <option value="EURJPY">EUR/JPY</option>
+              <option value="EURCAD">EUR/CAD</option>
+              <option value="EURCHF">EUR/CHF</option>
+              <option value="EURNZD">EUR/NZD</option>
+              <option value="CADJPY">CAD/JPY</option>
+              <option value="EURGBP">EUR/GBP</option>
+              <option value="GBPCHF">GBP/CHF</option>
+              <option value="CHFJPY">CHF/JPY</option>
+              <option value="GBPJPY">GBP/JPY</option>
+              <option value="AUDCAD">AUD/CAD</option>
+              <option value="NZDCAD">NZD/CAD</option>
+              <option value="USDNOK">USD/NOK</option>
+              <option value="GBPAUD">GBP/AUD</option>
+              <option value="GBPNZD">GBP/NZD</option>
+              <option value="CADCHF">CAD/CHF</option>
+              <option value="AUDNZD">AUD/NZD</option>
+              <option value="AUDJPY">AUD/JPY</option>
+              <option value="AUDCHF">AUD/CHF</option>
+              <option value="GBPCAD">GBP/CAD</option>
+              <option value="NZDCHF">NZD/CHF</option>
+              <option value="NZDJPY">NZD/JPY</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="account-currency">Account Currency</label>
+            <select id="account-currencyPips" class="form-control">
+              <option value="USD">USD</option>
+              <!-- <option value="EUR">EUR</option>
+                <option value="GBP">GBP</option>
+                <option value="AUD">AUD</option> -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="account-size">Account size</label>
+            <input class="form-ctrl form-control" type="number" value="1000" id="account-sizePips"
+              placeholder="Enter account size" required>
+          </div>
+          <div class="form-group">
+            <label for="risk-percentage">Risk percentage</label>
+            <input class="form-ctrl form-control" type="number" value="2" id="risk-percentagePips"
+              placeholder="Enter risk percentage" required>
+          </div>
+          <div class="form-group">
+            <label for="stop-loss">Stop loss (Pips)</label>
+            <input class="form-ctrl form-control" type="number" value="100" id="stop-lossPips"
+              placeholder="Enter stoploss" required>
+          </div>
+          <!-- <div class="form-group">
+              <label for="trade-size">Trade size (Lots)</label>
+              <input type="text" id="trade-size" placeholder="Enter trade size">
+          </div> -->
+          <button id="calculate-buttonPips" class="btn btn-green btn-block mt-2">Calculate</button>
+          <div id="resultPips" style="display: inline-block; font-size: 16px; font-weight: bold;"></div>
+        </form>
+        <p class="text-center footer-text">
+          <a href="https://sarmaaya.pk/" target="_blank" class="text-center">www.sarmaaya.pk</a>
+        </p>
+      </div>
+      <!-- 4th card -->
+      <div class="tab-pane fade p-3" id="pip-value" role="tabpanel" aria-labelledby="pip-value-tab">
+        <h5 class="pb-4 text-center"><img src="images/S-logo-green.png" width="10%">Pip Value calculator</h5>
+        <form>
+          <div class="form-group">
+            <label for="currency-pair">Currency Pair</label>
+            <select id="currency-pairPip" class="form-control">
+              <option value="EURUSD">EUR/USD</option>
+              <option value="GBPUSD">GBP/USD</option>
+              <option value="USDJPY">USD/JPY</option>
+              <option value="AUDUSD">AUD/USD</option>
+              <option value="USDCHF">USD/CHF</option>
+              <option value="USDCAD">USD/CAD</option>
+              <option value="NZDUSD">NZD/USD</option>
+              <option value="EURAUD">EUR/AUD</option>
+              <option value="EURJPY">EUR/JPY</option>
+              <option value="EURCAD">EUR/CAD</option>
+              <option value="EURCHF">EUR/CHF</option>
+              <option value="EURNZD">EUR/NZD</option>
+              <option value="CADJPY">CAD/JPY</option>
+              <option value="EURGBP">EUR/GBP</option>
+              <option value="GBPCHF">GBP/CHF</option>
+              <option value="CHFJPY">CHF/JPY</option>
+              <option value="GBPJPY">GBP/JPY</option>
+              <option value="AUDCAD">AUD/CAD</option>
+              <option value="NZDCAD">NZD/CAD</option>
+              <option value="USDNOK">USD/NOK</option>
+              <option value="GBPAUD">GBP/AUD</option>
+              <option value="GBPNZD">GBP/NZD</option>
+              <option value="CADCHF">CAD/CHF</option>
+              <option value="AUDNZD">AUD/NZD</option>
+              <option value="AUDJPY">AUD/JPY</option>
+              <option value="AUDCHF">AUD/CHF</option>
+              <option value="GBPCAD">GBP/CAD</option>
+              <option value="NZDCHF">NZD/CHF</option>
+              <option value="NZDJPY">NZD/JPY</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="account-currency">Account Currency</label>
+            <select id="account-currencyPip" class="form-control">
+              <option value="USD">USD</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Trade Size (Lots)</label>
+            <input class="form-ctrl form-control" type="number" value="1" id="trade-sizePip"
+              placeholder="Enter trade size" required>
+          </div>
+          <div class="form-group">
+            <label>Pips</label>
+            <input class="form-ctrl form-control" type="number" value="1" id="pipsPip" placeholder="Enter pips"
+              required>
+          </div>
+          <button id="calculate-buttonPip" class="btn btn-green btn-block mt-2">Calculate</button>
+          <div id="resultPip" style="display: inline-block; font-size: 16px; font-weight: bold;"></div>
+        </form>
+        <p class="text-center footer-text">
+          <a href="https://sarmaaya.pk/" target="_blank" class="text-center">www.sarmaaya.pk</a>
+        </p>
+      </div>
+      <!-- 5th card -->
+      <div class="tab-pane fade p-3" id="pips-price" role="tabpanel" aria-labelledby="pips-price-tab">
+        <h5 class="pb-4 text-center"><img src="images/S-logo-green.png" width="10%">Position Size Calculator (Price)
+        </h5>
+        <form>
+          <div class="form-group">
+            <label for="currency-pair">Currency Pair</label>
+            <select id="currency-pairPrice" class="form-control">
+              <option value="EURUSD">EUR/USD</option>
+              <option value="GBPUSD">GBP/USD</option>
+              <option value="USDJPY">USD/JPY</option>
+              <option value="AUDUSD">AUD/USD</option>
+              <option value="USDCHF">USD/CHF</option>
+              <option value="USDCAD">USD/CAD</option>
+              <option value="NZDUSD">NZD/USD</option>
+              <option value="EURAUD">EUR/AUD</option>
+              <option value="EURJPY">EUR/JPY</option>
+              <option value="EURCAD">EUR/CAD</option>
+              <option value="EURCHF">EUR/CHF</option>
+              <option value="EURNZD">EUR/NZD</option>
+              <option value="CADJPY">CAD/JPY</option>
+              <option value="EURGBP">EUR/GBP</option>
+              <option value="GBPCHF">GBP/CHF</option>
+              <option value="CHFJPY">CHF/JPY</option>
+              <option value="GBPJPY">GBP/JPY</option>
+              <option value="AUDCAD">AUD/CAD</option>
+              <option value="NZDCAD">NZD/CAD</option>
+              <option value="USDNOK">USD/NOK</option>
+              <option value="GBPAUD">GBP/AUD</option>
+              <option value="GBPNZD">GBP/NZD</option>
+              <option value="CADCHF">CAD/CHF</option>
+              <option value="AUDNZD">AUD/NZD</option>
+              <option value="AUDJPY">AUD/JPY</option>
+              <option value="AUDCHF">AUD/CHF</option>
+              <option value="GBPCAD">GBP/CAD</option>
+              <option value="NZDCHF">NZD/CHF</option>
+              <option value="NZDJPY">NZD/JPY</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="account-currency">Account Currency</label>
+            <select id="account-currencyPrice" class="form-control">
+              <option value="USD">USD</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Account Size(Equity)</label>
+            <input class="form-ctrl form-control" type="number" value="1000" id="account-sizePrice"
+              placeholder="Enter account size" required>
+          </div>
+          <div class="form-group">
+            <label>Risk Percentage</label>
+            <input class="form-ctrl form-control" type="number" value="2" id="risk-percentagePrice"
+              placeholder="Enter risk percentage" required>
+          </div>
+          <div class="form-group">
+            <label>Entry Price</label>
+            <input class="form-ctrl form-control" type="number" value="1.0881" id="entry-pricePrice"
+              placeholder="Enter entry price" required>
+          </div>
+          <div class="form-group">
+            <label>StopLoss Price</label>
+            <input class="form-ctrl form-control" type="number" value="1.0886" id="stop-pricePrice"
+              placeholder="Enter stoploss price" required>
+          </div>
+          <button id="calculate-buttonPrice" class="btn btn-green btn-block mt-2">Calculate</button>
+          <div id="resultPrice" style="display: inline-block; font-size: 16px; font-weight: bold;"></div>
+        </form>
+        <p class="text-center footer-text">
+          <a href="https://sarmaaya.pk/" target="_blank" class="text-center">www.sarmaaya.pk</a>
+        </p>
 
-    <div class="form-group">
-      <form>
-        <div class="form-group">
-          <button id="margin-button">Margin</button>
-          <button id="profit-button">Profit</button>
-          <button id="position-size-button">Position Size Pips</button>
-          <button id="pip-value-button">Pip Value</button>
-          <button id="position-size-price-button">Position Size Price</button>
-        </div>
-      </form>
+      </div>
+
     </div>
   </div>
-  <script src="script.js"></script>
+
 </body>
+<script src="margin-calculator/margin.js"></script>
+<script src="profit-calculator/profit.js"></script>
+<script src="position-size/position_size.js"></script>
+<script src="pip-value/pip_value.js"></script>
+<script src="position-size-price/position_size_price.js"></script>
 
 </html>

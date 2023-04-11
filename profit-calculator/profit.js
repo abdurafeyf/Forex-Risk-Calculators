@@ -1,23 +1,23 @@
-const currencyPairSelect = document.getElementById("currency-pair");
-const accountCurrencySelect = document.getElementById("account-currency");
-const tradeSizeInput = document.getElementById("trade-size");
-const openInput = document.getElementById("open-price");
-const closeInput = document.getElementById("close-price");
-const directionInput = document.getElementById("direction");
-const calculateButton = document.getElementById("calculate-button");
-const result = document.getElementById("result");
+const currencyPairSelectProfit = document.getElementById("currency-pairProfit");
+const accountCurrencySelectProfit = document.getElementById("account-currencyProfit");
+const tradeSizeInputProfit = document.getElementById("trade-sizeProfit");
+const openInputProfit = document.getElementById("open-priceProfit");
+const closeInputProfit = document.getElementById("close-priceProfit");
+const directionInputProfit = document.getElementById("directionProfit");
+const calculateButtonProfit = document.getElementById("calculate-buttonProfit");
+const resultProfit = document.getElementById("resultProfit");
 
 // on button click
-calculateButton.addEventListener("click", event => {
+calculateButtonProfit.addEventListener("click", event => {
     // prevent the default from submission behaviour
     event.preventDefault();
     // getting value and parsing into float
-    const tradeSize = parseFloat(tradeSizeInput.value);
-    const openPrice = parseFloat(openInput.value);
-    const closePrice = parseFloat(closeInput.value);
-    const direction = directionInput.value;
-    const selectedCurrencyPair = currencyPairSelect.value;
-    const selectedAccountCurrency = accountCurrencySelect.value;
+    const tradeSize = parseFloat(tradeSizeInputProfit.value);
+    const openPrice = parseFloat(openInputProfit.value);
+    const closePrice = parseFloat(closeInputProfit.value);
+    const direction = directionInputProfit.value;
+    const selectedCurrencyPair = currencyPairSelectProfit.value;
+    const selectedAccountCurrency = accountCurrencySelectProfit.value;
 
     var baseCurrency = selectedCurrencyPair.slice(0, 3);
     var quoteCurrency = selectedCurrencyPair.slice(3, 6);
@@ -43,11 +43,11 @@ calculateButton.addEventListener("click", event => {
             } else if (quoteCurrency !== "USD" && baseCurrency !== "USD") {
                 profit = profit / random;
             }
-            result.style.display = "block";
+            resultProfit.style.display = "block";
             if (profit === Infinity) {
-                result.innerText = `Press the Button Again`;
+                resultProfit.innerText = `Press the Button Again`;
             } else {
-                result.innerText = `Result: ${profit.toFixed(4)} ${selectedAccountCurrency}`;
+                resultProfit.innerText = `Result: ${profit.toFixed(4)} ${selectedAccountCurrency}`;
             }
         })
         .catch((error) => {
@@ -81,15 +81,15 @@ function getRate(currencyFrom, currencyTo) {
     });
 }
 
-var select = document.getElementById("currency-pair");
-var options = select.options;
-var arr = [];
-for (var i = 0; i < options.length; i++) {
-    arr.push(options[i]);
+var selectProfit = document.getElementById("currency-pairProfit");
+var optionsProfit = selectProfit.options;
+var arrProfit = [];
+for (var i = 0; i < optionsProfit.length; i++) {
+    arrProfit.push(optionsProfit[i]);
 }
-arr.sort(function(a, b) {
+arrProfit.sort(function (a, b) {
     return a.text == b.text ? 0 : (a.text > b.text ? 1 : -1);
 });
-for (var i = 0; i < arr.length; i++) {
-    select.appendChild(arr[i]);
+for (var i = 0; i < arrProfit.length; i++) {
+    selectProfit.appendChild(arrProfit[i]);
 }

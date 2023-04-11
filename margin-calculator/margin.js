@@ -1,6 +1,6 @@
 const currencyPairSelect = document.getElementById("currency-pair");
 const accountCurrencySelect = document.getElementById("account-currency");
-const calculateButton = document.getElementById("calculate-button");
+const calculateButton = document.getElementById("calculate-button-margin");
 const tradeSizeInput = document.getElementById("trade-size");
 const marginInput = document.getElementById("margin-ratio");
 const result = document.getElementById("result");
@@ -75,7 +75,7 @@ var arr = [];
 for (var i = 0; i < options.length; i++) {
     arr.push(options[i]);
 }
-arr.sort(function(a, b) {
+arr.sort(function (a, b) {
     return a.text == b.text ? 0 : (a.text > b.text ? 1 : -1);
 });
 for (var i = 0; i < arr.length; i++) {

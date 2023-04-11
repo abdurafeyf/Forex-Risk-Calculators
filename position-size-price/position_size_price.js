@@ -1,25 +1,25 @@
-const accountSizeInput = document.getElementById("account-size");
-const riskPercentageInput = document.getElementById("risk-percentage");
-const currencyPairSelect = document.getElementById("currency-pair");
-const accountCurrencySelect = document.getElementById("account-currency");
-const entryPriceInput = document.getElementById("entry-price");
-const stopPriceInput = document.getElementById("stop-price");
-const calculateButton = document.getElementById("calculate-button");
-const result = document.getElementById("result");
+const accountSizeInputPrice = document.getElementById("account-sizePrice");
+const riskPercentageInputPrice = document.getElementById("risk-percentagePrice");
+const currencyPairSelectPrice = document.getElementById("currency-pairPrice");
+const accountCurrencySelectPrice = document.getElementById("account-currencyPrice");
+const entryPriceInputPrice = document.getElementById("entry-pricePrice");
+const stopPriceInputPrice = document.getElementById("stop-pricePrice");
+const calculateButtonPrice = document.getElementById("calculate-buttonPrice");
+const resultPrice = document.getElementById("resultPrice");
 
 // on button click
-calculateButton.addEventListener("click", event => {
+calculateButtonPrice.addEventListener("click", event => {
     // prevent the default from submission behaviour
     event.preventDefault();
     // getting value and parsing into float
-    const accountSize = parseFloat(accountSizeInput.value);
-    const riskPercentage = parseFloat(riskPercentageInput.value);
+    const accountSize = parseFloat(accountSizeInputPrice.value);
+    const riskPercentage = parseFloat(riskPercentageInputPrice.value);
     // const tradeSize = parseFloat(tradeSizeInput.value);
     const tradeSize = parseFloat(1);
-    const selectedCurrencyPair = currencyPairSelect.value;
-    const selectedAccountCurrency = accountCurrencySelect.value;
-    const entryPrice = parseFloat(entryPriceInput.value);
-    const stopPrice = parseFloat(stopPriceInput.value);
+    const selectedCurrencyPair = currencyPairSelectPrice.value;
+    const selectedAccountCurrency = accountCurrencySelectPrice.value;
+    const entryPrice = parseFloat(entryPriceInputPrice.value);
+    const stopPrice = parseFloat(stopPriceInputPrice.value);
     // initializing pip value
     var pip_value = 0;
     var baseCurrency = selectedCurrencyPair.slice(0, 3);
@@ -55,13 +55,13 @@ calculateButton.addEventListener("click", event => {
                 pip_value = 10 / random;
             }
             let standardLots = (accountSize * (riskPercentage / 100)) / (stopLoss * pip_value);
-            result.style.display = "block";
+            resultPrice.style.display = "block";
             if (pip_value === Infinity) {
-                result.innerText = `Amount at Risk: ${accountSize * (riskPercentage / 100)} ${selectedAccountCurrency} 
+                resultPrice.innerText = `Amount at Risk: ${accountSize * (riskPercentage / 100)} ${selectedAccountCurrency} 
             Press the button again`;
             }
             else {
-                result.innerText = `Amount at Risk: ${accountSize * (riskPercentage / 100)} ${selectedAccountCurrency} 
+                resultPrice.innerText = `Amount at Risk: ${accountSize * (riskPercentage / 100)} ${selectedAccountCurrency} 
             Sizing: ${(standardLots / if_jpy * val_jpy).toFixed(2)} Lots`;
             }
         })
@@ -96,15 +96,15 @@ function getRate(currencyFrom, currencyTo) {
     });
 }
 
-var select = document.getElementById("currency-pair");
-var options = select.options;
-var arr = [];
-for (var i = 0; i < options.length; i++) {
-    arr.push(options[i]);
+var selectPrice = document.getElementById("currency-pairPrice");
+var optionsPrice = selectPrice.options;
+var arrPrice = [];
+for (var i = 0; i < optionsPrice.length; i++) {
+    arrPrice.push(optionsPrice[i]);
 }
-arr.sort(function (a, b) {
+arrPrice.sort(function (a, b) {
     return a.text == b.text ? 0 : (a.text > b.text ? 1 : -1);
 });
-for (var i = 0; i < arr.length; i++) {
-    select.appendChild(arr[i]);
+for (var i = 0; i < arrPrice.length; i++) {
+    selectPrice.appendChild(arrPrice[i]);
 }

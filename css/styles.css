@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+#calculator {
+  width: 380px;
+  /* margin: 200px auto; */
+  border-radius: 10px;
+
+
+
+}
+
+#calculator form {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#calculator form .form-group {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+#calculator form .form-group label {
+  width: 40%;
+  margin-right: 10px;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+#calculator form .form-group input,
+#calculator form .form-group select {
+  width: 100%;
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  box-sizing: border-box;
+}
+
+#calculator form .form-group input:focus,
+#calculator form .form-group select:focus {
+  outline: none;
+  box-shadow: 0px 0px 5px #6ce606;
+}
+
+#header {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+#header img {
+  width: 30px;
+  height: 30px;
+}
+
+button {
+  margin: 2px;
+  padding: 3px 10px;
+  background-color: #28a745;
+  color: #fff;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+.title {
+  text-align: center;
+}
+
+/* nav */
+.card {
+  max-width: 25rem;
+  padding: 0;
+  border: none;
+  border-radius: 0.5rem;
+}
+
+a.active {
+  border-bottom: 2px solid #6ce606;
+}
+
+#pills-tab {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#pills-tab li {
+  display: table-cell;
+  width: 20%;
+}
+
+.nav-link {
+  color: #012C3F;
+  font-weight: 500;
+  display: block;
+  padding: .5em;
+  background: #eee;
+  border: 1px solid #ddd;
+  text-align: center;
+  text-decoration: none;
+  font-size: 13px;
+
+}
+
+.nav-link:hover {
+  color: #55c57a;
+}
+
+.nav-pills .nav-link.active {
+  color: #012C3F;
+  background-color: white;
+  border-radius: 0;
+  /* font-weight: 600; */
+}
+
+.nav-pills .nav-link {
+  border-radius: 0px !important;
+}
+
+/* .tab-content {
+  padding-bottom: 1.3rem;
+} */
+
+.form-control {
+  background-color: rgb(241, 243, 247);
+  border: none;
+}
+
+/* 3nd card */
+span {
+  margin-left: 0.5rem;
+  padding: 1px 10px;
+  color: white;
+  background-color: rgb(143, 143, 143);
+  border-radius: 4px;
+  font-weight: 600;
+  text-align: center;
+  justify-content: center;
+}
+
+.third {
+  padding: 0 1.5rem 0 1.5rem;
+}
+
+label {
+  font-weight: 500;
+  color: #012c3f;
+}
+
+.btn-success {
+  float: right;
+}
+
+.form-control:focus {
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 7px rgba(0, 0, 0, 0.2);
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: "";
+}
+
+/* 1st card */
+
+ul {
+  list-style: none;
+  margin-top: 1rem;
+  padding-inline-start: 0;
+}
+
+.search {
+  padding: 0 1rem 0 1rem;
+}
+
+.ccontent li .wrapp {
+  padding: 0.3rem 1rem 0.001rem 1rem;
+}
+
+.ccontent li .wrapp div {
+  font-weight: 600;
+}
+
+.ccontent li .wrapp p {
+  font-weight: 360;
+}
+
+.ccontent li:hover {
+  background-color: rgb(117, 93, 255);
+  color: white;
+}
+
+/* 2nd card */
+
+.addinfo {
+  padding: 0 1rem;
+}
+
+.btn-green {
+  background: #6ce606;
+  border-color: #6ce606;
+  color: #012c3f;
+}
+
+.btn-green:hover {
+  background: #012c3f;
+  border-color: #012c3f;
+  color: #fff;
+}
+
+.footer-text a {
+  font-size: 12px;
+  color: #012c3f;
+}
+
+.footer-text a:hover {
+  color: #6ce606;
+}
+
+.form-control {
+  font-size: 0.8rem !important;
+}
+
+.result {
+  border: 5px solid;
+  text-align: center;
+}

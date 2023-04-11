@@ -1,19 +1,19 @@
-const currencyPairSelect = document.getElementById("currency-pair");
-const accountCurrencySelect = document.getElementById("account-currency");
-const calculateButton = document.getElementById("calculate-button");
-const tradeSizeInput = document.getElementById("trade-size");
-const pipsInput = document.getElementById("pips");
-const result = document.getElementById("result");
+const currencyPairSelectPip = document.getElementById("currency-pairPip");
+const accountCurrencySelectPip = document.getElementById("account-currencyPip");
+const calculateButtonPip = document.getElementById("calculate-buttonPip");
+const tradeSizeInputPip = document.getElementById("trade-sizePip");
+const pipsInputPip = document.getElementById("pipsPip");
+const resultPip = document.getElementById("resultPip");
 
 // on button click
-calculateButton.addEventListener("click", event => {
+calculateButtonPip.addEventListener("click", event => {
     // prevent the default from submission behaviour
     event.preventDefault();
     // getting value and parsing into float
-    const tradeSize = parseFloat(tradeSizeInput.value);
-    const pips = parseFloat(pipsInput.value);
-    const selectedCurrencyPair = currencyPairSelect.value;
-    const selectedAccountCurrency = accountCurrencySelect.value;
+    const tradeSize = parseFloat(tradeSizeInputPip.value);
+    const pips = parseFloat(pipsInputPip.value);
+    const selectedCurrencyPair = currencyPairSelectPip.value;
+    const selectedAccountCurrency = accountCurrencySelectPip.value;
     // initializing pip value
     var pip_value = 0;
     var baseCurrency = selectedCurrencyPair.slice(0, 3);
@@ -40,16 +40,16 @@ calculateButton.addEventListener("click", event => {
             }
             pip_value = pip_value * if_jpy * tradeSize;
             let lots = (pip_value / tradeSize) * pips;
-            result.style.display = "block";
+            resultPip.style.display = "block";
             if (pip_value === Infinity) {
-                result.innerText = `Price: ${exchangeRate}
+                resultPip.innerText = `Price: ${exchangeRate}
         Press the Button Again`;
             } else {
-                result.innerText = `Price: ${exchangeRate}
+                resultPip.innerText = `Price: ${exchangeRate}
         Pip Value: ${(pip_value).toFixed(4)} ${selectedAccountCurrency}
         Standard Lot: ${(lots).toFixed(4)}
-        Mini Lot: ${(lots/10).toFixed(4)}
-        Micro Lot: ${(lots/100).toFixed(4)}`;
+        Mini Lot: ${(lots / 10).toFixed(4)}
+        Micro Lot: ${(lots / 100).toFixed(4)}`;
             }
         })
         .catch((error) => {
@@ -83,15 +83,15 @@ function getRate(currencyFrom, currencyTo) {
     });
 }
 
-var select = document.getElementById("currency-pair");
-var options = select.options;
-var arr = [];
-for (var i = 0; i < options.length; i++) {
-    arr.push(options[i]);
+var selectPip = document.getElementById("currency-pairPip");
+var optionsPip = selectPip.options;
+var arrPip = [];
+for (var i = 0; i < optionsPip.length; i++) {
+    arrPip.push(optionsPip[i]);
 }
-arr.sort(function(a, b) {
+arrPip.sort(function (a, b) {
     return a.text == b.text ? 0 : (a.text > b.text ? 1 : -1);
 });
-for (var i = 0; i < arr.length; i++) {
-    select.appendChild(arr[i]);
+for (var i = 0; i < arrPip.length; i++) {
+    selectPip.appendChild(arrPip[i]);
 }

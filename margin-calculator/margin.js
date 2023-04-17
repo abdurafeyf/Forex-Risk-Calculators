@@ -69,6 +69,13 @@ function getRate(currencyFrom, currencyTo) {
     });
 }
 
+for (const key in currencyPairs) {
+    const option = document.createElement('option');
+    option.value = key;
+    option.text = currencyPairs[key];
+    currencyPairSelect.appendChild(option);
+}
+
 var select = document.getElementById("currency-pair");
 var options = select.options;
 var arr = [];
@@ -81,3 +88,4 @@ arr.sort(function (a, b) {
 for (var i = 0; i < arr.length; i++) {
     select.appendChild(arr[i]);
 }
+

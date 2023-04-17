@@ -96,6 +96,13 @@ function getRate(currencyFrom, currencyTo) {
     });
 }
 
+for (const key in currencyPairs) {
+    const option = document.createElement('option');
+    option.value = key;
+    option.text = currencyPairs[key];
+    currencyPairSelectPrice.appendChild(option);
+}
+
 var selectPrice = document.getElementById("currency-pairPrice");
 var optionsPrice = selectPrice.options;
 var arrPrice = [];
